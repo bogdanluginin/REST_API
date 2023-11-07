@@ -1,0 +1,320 @@
+openapi: 3.0.0
+info:
+  title: Student Rating API
+  version: 1.0.0
+tags:
+  - name: student
+  - name: rating
+paths:
+  /student:
+    post:
+      tags:
+        - student
+      summary: Create a new student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '201':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'
+        '400':
+          description: Invalid input
+        '503':
+          description: Server error
+    get:
+      tags:
+        - student
+      summary: Read all students
+      responses:
+        '200':
+          description: List of students
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Student'
+        '503':
+          description: Server error
+    put:
+      tags:
+       - student
+      summary: Update the student by id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '200':
+          description: Student updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student' 
+        '400':
+          description: Invalid input
+        '503':
+          description: Server error
+  /student/{id}:
+    get:
+      tags:
+       - student
+      summary: Read the student by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'      
+        '400':
+          description: Invalid input
+        '404':
+          description: Entity not found
+        '503':
+          description: Server error
+    patch:
+      tags:
+        - student
+      summary: Updates the student with partial form data
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: first_name
+          in: query
+          schema:
+            type: string
+        - name: last_name
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Student'      
+        '400':
+          description: Invalid input
+        '404':
+          description: Entity not found
+        '503':
+          description: Server error
+    delete:
+      tags:
+        - student
+      summary: Delete the student by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '404':
+          description: Entity not found
+        '503':
+          description: Server error
+  /rating:
+    post:
+      tags:
+        - rating
+      summary: Create a new rating
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rating'
+      responses:
+        '201':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rating'
+        '400':
+          description: Invalid input
+        '503':
+          description: Server error
+    get:
+      tags:
+        - rating
+      summary: Read all ratings
+      responses:
+        '200':
+          description: List of students
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rating'
+        '503':
+          description: Server error
+  /rating/best:
+    get:
+      tags:
+        - rating
+      summary: Read the best students by value
+      responses:
+        '200':
+          description: Student information
+        '503':
+          description: Server error
+  /rating/{id}:
+    get:
+      tags:
+        - rating
+      summary: Read the rating by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Student information
+        '503':
+          description: Server error
+    put:
+      tags:
+        - rating
+      summary: Update the rating by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rating'
+      responses:
+        '200':
+          description: Student updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rating'
+        '400':
+          description: Invalid input
+        '503':
+          description: Server error
+    patch:
+      tags:
+        - rating
+      summary: Updates the student with partial form data
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: first_name
+          in: query
+          schema:
+            type: string
+        - name: last_name
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rating'
+        '400':
+          description: Invalid input
+        '404':
+          description: Entity not found
+        '503':
+          description: Server error
+    delete:
+      tags:
+        - rating
+      summary: Delete the rating by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '404':
+          description: Entity not found
+        '503':
+          description: Server error
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 28
+        rating:
+          type: number
+          format: float
+          example: 3.9
+        first_name:
+          type: string
+          example: Hrytsko
+        last_name:
+          type: string
+          example: Bober
+    Rating:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 28
+        student_id:
+          type: integer
+          format: int64
+          example: 28
+        value:
+          type: integer
+          example: 3.9
