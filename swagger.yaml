@@ -26,8 +26,8 @@ paths:
                 $ref: '#/components/schemas/Student'
         '400':
           description: Invalid input
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
     get:
       tags:
         - student
@@ -41,8 +41,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Student'
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
     put:
       tags:
        - student
@@ -62,8 +62,8 @@ paths:
                 $ref: '#/components/schemas/Student' 
         '400':
           description: Invalid input
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
   /student/{id}:
     get:
       tags:
@@ -87,8 +87,8 @@ paths:
           description: Invalid input
         '404':
           description: Entity not found
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
     patch:
       tags:
         - student
@@ -119,8 +119,8 @@ paths:
           description: Invalid input
         '404':
           description: Entity not found
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
     delete:
       tags:
         - student
@@ -139,8 +139,8 @@ paths:
           description: Invalid input
         '404':
           description: Entity not found
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
   /rating:
     post:
       tags:
@@ -161,8 +161,8 @@ paths:
                 $ref: '#/components/schemas/Rating'
         '400':
           description: Invalid input
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
     get:
       tags:
         - rating
@@ -186,8 +186,8 @@ paths:
       responses:
         '200':
           description: Student information
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
   /rating/{id}:
     get:
       tags:
@@ -203,8 +203,8 @@ paths:
       responses:
         '200':
           description: Student information
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
     put:
       tags:
         - rating
@@ -231,8 +231,8 @@ paths:
                 $ref: '#/components/schemas/Rating'
         '400':
           description: Invalid input
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
     patch:
       tags:
         - rating
@@ -263,8 +263,8 @@ paths:
           description: Invalid input
         '404':
           description: Entity not found
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
     delete:
       tags:
         - rating
@@ -283,8 +283,8 @@ paths:
           description: Invalid input
         '404':
           description: Entity not found
-        '503':
-          description: Server error
+        '500':
+          description: Internal server error
 components:
   schemas:
     Student:
